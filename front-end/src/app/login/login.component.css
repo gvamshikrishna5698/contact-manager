@@ -1,0 +1,16 @@
+input {
+  width: 350px;
+  height: 36px;
+  padding: 0 10px 0 10px;
+}
+label {
+  font-size: 22px;
+}
+button {
+  width: 350px;
+  margin-bottom: 10px;
+}
+
+.heading {
+  padding-bottom: 10px;
+}

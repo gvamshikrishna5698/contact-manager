@@ -1,0 +1,53 @@
+<div class="container mt-5 registerForm">
+  <h4 class="col-sm-6">Sign-up</h4>
+  <p *ngIf="error" class="col-sm-6 text-danger">{{ errorMessage }}</p>
+  <form
+    #registerForm="ngForm"
+    (ngSubmit)="!registerForm.invalid && register(registerForm)"
+  >
+    <div class="col-sm-6">
+      <input
+        type="text"
+        ngModel
+        name="username"
+        id="username"
+        placeholder="enter your username"
+        class="form-control"
+        required="required"
+        minlength="5"
+      />
+    </div>
+
+    <div class="col-sm-6">
+      <input
+        type="email"
+        ngModel
+        name="email"
+        id="email"
+        placeholder="enter your email"
+        class="form-control"
+        required="required"
+        minlength="6"
+      />
+    </div>
+    <div class="col-sm-6">
+      <input
+        type="password"
+        ngModel
+        name="password"
+        id="password"
+        placeholder="enter password"
+        class="form-control"
+        required="required"
+        minlength="8"
+      />
+    </div>
+    <div class="col-sm-6">
+      <input
+        type="submit"
+        value="Register"
+        class="btn btn-success form-control rounded-0"
+      />
+    </div>
+  </form>
+</div>

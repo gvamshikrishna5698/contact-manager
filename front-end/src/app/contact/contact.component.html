@@ -1,0 +1,132 @@
+<div class="container main-container mt-5">
+  <h3 class="mb-2">Contact:</h3>
+  <p *ngIf="err">{{ errorMessage }}</p>
+  <form
+    (ngSubmit)="!contactForm.invalid && saveContact()"
+    #contactForm="ngForm"
+  >
+    <fieldset class="form-group">
+      <label>Firstname</label>
+      <input
+        type="text"
+        [(ngModel)]="contact.firstName"
+        id="firstName"
+        #firstName="ngModel"
+        name="firstName"
+        class="form-control"
+        required="required"
+        minlength="5"
+      />
+      <p
+        class="text-danger"
+        *ngIf="
+          contactForm.dirty &&
+          firstName.invalid &&
+          (firstName.dirty || firstName.touched)
+        "
+      >
+        first name should contain atleat five characters.
+      </p>
+    </fieldset>
+
+    <fieldset class="form-group">
+      <label>Lastname</label>
+      <input
+        type="text"
+        [(ngModel)]="contact.lastName"
+        id="lastName"
+        #lastName="ngModel"
+        name="lastName"
+        class="form-control"
+        required="required"
+        minlength="5"
+      />
+      <p
+        class="text-danger"
+        *ngIf="
+          contactForm.dirty &&
+          lastName.invalid &&
+          (lastName.dirty || lastName.touched)
+        "
+      >
+        last name should contain atleat five characters.
+      </p>
+    </fieldset>
+
+    <fieldset class="form-group">
+      <label>email</label>
+      <input
+        type="text"
+        [(ngModel)]="contact.email"
+        id="email"
+        #email="ngModel"
+        name="email"
+        class="form-control"
+        required="required"
+        minlength="5"
+      />
+      <p
+        class="text-danger"
+        *ngIf="
+          contactForm.dirty && email.invalid && (email.dirty || email.touched)
+        "
+      >
+        email should contain atleat five characters.
+      </p>
+    </fieldset>
+
+    <div class="row">
+      <div class="col-sm">
+        <fieldset class="form-group">
+          <label>Country Code</label>
+          <input
+            type="text"
+            [(ngModel)]="contact.countryCode"
+            id="countryCode"
+            #countryCode="ngModel"
+            name="countryCode"
+            class="form-control"
+            required="required"
+            minlength="2"
+          />
+          <p
+            class="text-danger"
+            *ngIf="
+              contactForm.dirty &&
+              countryCode.invalid &&
+              (countryCode.dirty || countryCode.touched)
+            "
+          >
+            country code should contain atleat two characters.
+          </p>
+        </fieldset>
+      </div>
+      <div class="col-8">
+        <fieldset class="form-group">
+          <label>Number</label>
+          <input
+            type="text"
+            [(ngModel)]="contact.number"
+            id="number"
+            #number="ngModel"
+            name="number"
+            class="form-control"
+            required="required"
+            minlength="10"
+          />
+          <p
+            class="text-danger"
+            *ngIf="
+              contactForm.dirty &&
+              number.invalid &&
+              (number.dirty || number.touched)
+            "
+          >
+            number should contain only ten characters.
+          </p>
+        </fieldset>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary col-3">save</button>
+  </form>
+</div>

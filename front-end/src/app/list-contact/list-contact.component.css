@@ -1,0 +1,18 @@
+th {
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: left;
+}
+
+td {
+  text-align: left;
+  align-items: left;
+}
+
+button {
+  margin-right: 15px;
+}
+
+.main-container {
+  margin-bottom: 100px;
+}

@@ -1,0 +1,39 @@
+<div class="container main-container mt-5">
+  <h3 class="mb-3">My Contacts:</h3>
+  <div class="alert alert-success" *ngIf="message">{{ message }}</div>
+  <table class="table">
+    <tr>
+      <th>first name</th>
+      <th>last name</th>
+      <th>email</th>
+      <th>mobile Number</th>
+      <th>Actions</th>
+    </tr>
+    <tr *ngFor="let contact of contacts">
+      <td>{{ contact.firstName }}</td>
+      <td>{{ contact.lastName }}</td>
+      <td>{{ contact.email }}</td>
+      <td>{{ contact.countryCode }} - {{ contact.number }}</td>
+
+      <td>
+        <button
+          (click)="updateContact(contact.contactId)"
+          class="btn btn-success"
+        >
+          Update
+        </button>
+        <button
+          (click)="deleteContact(contact.contactId)"
+          class="btn btn-warning"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </table>
+  <div class="container">
+    <button (click)="createContact()" class="btn btn-success">
+      Create Contact
+    </button>
+  </div>
+</div>

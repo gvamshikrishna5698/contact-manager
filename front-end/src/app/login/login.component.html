@@ -1,0 +1,31 @@
+<div class="container mt-4">
+  <h4 class="heading">Sign-in</h4>
+  <p *ngIf="invalidLogin" class="text-danger">{{ errorMessage }}</p>
+  <form (ngSubmit)="!loginForm.invalid && handleLogin()" #loginForm="ngForm">
+    <fieldset class="form-group">
+      <input
+        type="text"
+        [(ngModel)]="username"
+        class="form-control"
+        required="required"
+        placeholder="username"
+        [ngModelOptions]="{ standalone: true }"
+      />
+    </fieldset>
+
+    <fieldset class="form-group">
+      <input
+        type="password"
+        [(ngModel)]="password"
+        class="form-control"
+        required="required"
+        placeholder="password"
+        [ngModelOptions]="{ standalone: true }"
+      />
+    </fieldset>
+    <button type="submit" class="btn btn-success">Sign-in</button>
+  </form>
+  <button type="submit" class="btn btn-warning" routerLink="/register">
+    Sign-up
+  </button>
+</div>
