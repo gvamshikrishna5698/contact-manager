@@ -1,0 +1,48 @@
+const db = require("../util/db.js");
+const { rejects } = require("assert");
+const { createBrotliDecompress } = require("zlib");
+const dotenv = require("../util/env.js");
+const mysql = require("mysql2"); // built-in promise functionality]
+
+const conn = db;
+
+async function getContacts() {
+  var sql = "select * from contact";
+  const results = await conn.promise().query(sql);
+  return results[0];
+}
+
+async function getContact(data) {
+  var sql = `select * from contact where contactId = ${data}`;
+  const results = await conn.promise().query(sql);
+  return results[0];
+}
+
+async function addContact(data) {
+  var sql = `INSERT INTO contact (firstName,lastName,email,countryCode,number)
+    VALUES ('${data.firstName}','${data.lastName}','${data.email}','${data.countryCode}','${data.number}')`;
+  const results = await conn.promise().query(sql);
+  return results[0];
+}
+
+async function updateContact(data) {
+  var sql = `update contact set firstName='${data.firstName}',lastName='${data.lastName}',email='${data.email}',
+    countryCode='${data.countryCode}',number='${data.number}' where contactId = '${data.contactId}'`;
+
+  const results = await conn.promise().query(sql);
+  return results[0];
+}
+
+async function deleteContact(id) {
+  var sql = `DELETE FROM contact where contactId = ${id}`;
+  const results = await conn.promise().query(sql);
+  return results[0];
+}
+
+module.exports = {
+  getContacts,
+  getContact,
+  addContact,
+  deleteContact,
+  updateContact,
+};

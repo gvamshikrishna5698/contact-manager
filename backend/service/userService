@@ -1,0 +1,30 @@
+const db = require("../util/db.js");
+const mysql = require("mysql2");
+const { createBrotliDecompress } = require("zlib");
+const dotenv = require("../util/env.js");
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
+
+async function addUser(data) {
+  const pwd = bcrypt.hashSync(data.password, saltRounds);
+  var sql = `INSERT INTO USER (username,email,password)
+    VALUES ('${data.username}','${data.email}','${pwd}');`;
+  var sql2 = `INSERT INTO USER_ROLE (username, role_id) values ('${data.username}','USER')`;
+  const results = await db.promise().query(sql);
+  await db.promise().query(sql2);
+  return results[0];
+}
+
+async function getUser(username) {
+  var sql = `select * from USER where username = '${username}'`;
+  const results = await db.promise().query(sql);
+  return results[0];
+}
+
+async function getUserRoles(username) {
+  var sql = `select role_id from USER_ROLE where username = '${username}'`;
+  const results = await db.promise().query(sql);
+  return results[0];
+}
+
+module.exports = { addUser, getUser, getUserRoles };
