@@ -16,6 +16,17 @@ export class RouteGaurdService implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
-    return this.authService.verifyUser();
+    // return this.authService.verifyUser();
+    const promise = this.authService.verifyUser();
+    return promise.then(
+      (data) => {
+        return true;
+      },
+      (err) => {
+        this.authService.logout();
+        this.router.navigate(['/login']);
+        return false;
+      }
+    );
   }
 }

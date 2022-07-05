@@ -65,15 +65,21 @@ const login = (req, res) => {
 const verifyRoles = (req, res) => {
   if (req.body.role) {
     let result = userService.getUserRoles(req.session.username);
+    let isRoleFound = false;
     result.then(
       (data) => {
         for (var i = 0; i < data.length; i++) {
           for (var j = 0; j < req.body.role.length; j++) {
             if (data[i].role_id == req.body.role[j]) {
+              isRoleFound = true;
               res.status(200);
               res.send("Authorized");
             }
           }
+        }
+        if (!isRoleFound) {
+          res.status(401);
+          res.send("user unauthorized");
         }
       },
       (err) => {
@@ -81,6 +87,9 @@ const verifyRoles = (req, res) => {
         res.send("user unauthorized");
       }
     );
+  } else {
+    res.status(401);
+    res.send("user unauthorized");
   }
 };
 

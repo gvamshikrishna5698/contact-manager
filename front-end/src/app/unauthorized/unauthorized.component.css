@@ -1,0 +1,15 @@
+* {
+  text-align: center;
+  color: red;
+}
+
+svg {
+  position: center;
+  height: 120px;
+  width: 120px;
+  margin-top: 20px;
+}
+
+.container {
+  justify-content: center;
+}

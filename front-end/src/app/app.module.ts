@@ -16,6 +16,7 @@ import { ContactComponent } from './contact/contact.component';
 import { AdminComponent } from './admin/admin.component';
 import { HttpInterceptorBasicAuthService } from './service/http/http-interceptor-basic-auth.service';
 import { RegisterComponent } from './register/register.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { RegisterComponent } from './register/register.component';
     ContactComponent,
     AdminComponent,
     RegisterComponent,
+    UnauthorizedComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [

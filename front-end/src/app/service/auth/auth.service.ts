@@ -37,8 +37,20 @@ export class AuthService {
     );
   }
 
-  logout() {
+  performLogOut() {
     return this.httpClient.delete(`${API_URL}/contacts/logout`);
+  }
+
+  logout() {
+    sessionStorage.removeItem('id');
+    this.performLogOut().subscribe(
+      (res) => {
+        sessionStorage.removeItem('id');
+      },
+      (err) => {
+        sessionStorage.removeItem('id');
+      }
+    );
   }
 
   verifyUser() {
@@ -84,8 +96,11 @@ export class AuthService {
             reject(false);
           }
         );
+    }).catch(function (err) {
+      // dispatch a failure and throw error
+      throw err;
     });
-    this.isUserLoggedIn();
+
     return promise;
   }
 
@@ -95,5 +110,19 @@ export class AuthService {
     } else {
       return false;
     }
+  }
+  isAdminUser() {
+    if (this.isUserLoggedIn()) {
+      const promise = this.verifyRoles(['ADMIN']);
+      promise.then(
+        () => {
+          return true;
+        },
+        (err) => {
+          return false;
+        }
+      );
+    }
+    return false;
   }
 }

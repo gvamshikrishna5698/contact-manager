@@ -10,6 +10,7 @@ import { AdminComponent } from './admin/admin.component';
 import { RegisterComponent } from './register/register.component';
 import { RouteGaurdService } from './service/http/route-gaurd.service';
 import { AuthGuard } from './service/http/auth.guard';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
@@ -36,6 +37,11 @@ const routes: Routes = [
   {
     path: 'logout',
     component: LogoutComponent,
+  },
+  {
+    path: 'unauthorized',
+    component: UnauthorizedComponent,
+    canActivate: [RouteGaurdService],
   },
   {
     path: 'admin',

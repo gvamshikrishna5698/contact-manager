@@ -11,5 +11,7 @@ export class MenuComponent implements OnInit {
 
   constructor(public authService: AuthService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('RESULT' + this.authService.isAdminUser());
+  }
 }

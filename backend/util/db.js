@@ -11,7 +11,7 @@ var dbConnection = mysql.createConnection({
 
 dbConnection.connect((err) => {
   if (!err) console.log("DB connection succeeded!");
-  else console.log("DB COnnection failed due to following error: \n  " + err.m);
+  else console.log("DB Connection failed due to following error: \n  " + err.m);
 });
 
 module.exports = dbConnection;
