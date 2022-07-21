@@ -14,6 +14,9 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
   errorMessage = '';
   error = false;
+  username = '';
+  email = '';
+  password = '';
 
   register(registerForm: NgForm) {
     this.error = false;
